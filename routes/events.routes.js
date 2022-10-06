@@ -11,6 +11,6 @@ router.put('/:id', checkAdmin, updateEvent);
 
 router.delete('/:id', checkAdmin, deleteEvent)
 
-router.post('/create', checkAdmin, createEvent);
+router.post('/', checkAdmin, createEvent);
 
 module.exports = router;

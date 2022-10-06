@@ -15,5 +15,17 @@ router.get('/applicants', checkAdmin, getApplicants);
 
 router.post('/approve-alumni/:id',checkAdmin, approveApplicants)
 
+// TODO::
+
+router.put('/', checkAdmin,);
+
+router.delete('/', checkAdmin, );
+
+router.get('/:id', checkAdmin);
+
+router.get('/profile/:id', checkAlumni);
+
+router.put('/profile/:id', checkAlumni)
+
 
 module.exports = router;

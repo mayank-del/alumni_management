@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use('/api/alumni', alumniRoutes);
 app.use('/api/admin', adminRoutes);
-app.use('/api/event', eventRoutes);
+app.use('/api/events', eventRoutes);
 app.use('/api/jobs', jobRoutes);
 
 app.use(notFound);

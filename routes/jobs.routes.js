@@ -3,7 +3,7 @@ const { createJob, deleteJob , getJob, getJobs, updateJob} = require('../control
 const { checkAlumni, checkAdmin, } = require('../middleware/authMiddleware')
 const router = express.Router();
 
-router.post('/create', checkAdmin, createJob);
+router.post('/', checkAdmin, createJob);
 
 router.get('/', getJobs);
 
