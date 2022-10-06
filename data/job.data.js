@@ -1,0 +1,67 @@
+module.exports = [
+    {
+        id: 10,
+        job_title: "job1",
+        company: "Company1",
+        start_date: new Date(),
+        skills_req: "skill1",
+        edu_req: "req1",
+        expr_req: "exp1",
+        salary_given: 1000,
+        jobpost_status: "open",
+        createdAt: new Date(),
+        updatedAt: new Date()
+    },
+    {
+        id: 20,
+        job_title: "job2",
+        company: "Company2",
+        start_date: new Date(),
+        skills_req: "skill2",
+        edu_req: "req2",
+        expr_req: "exp2",
+        salary_given: 2000,
+        jobpost_status: "open",
+        createdAt: new Date(),
+        updatedAt: new Date()
+    },
+    {
+        id: 30,
+        job_title: "job3",
+        company: "Company3",
+        start_date: new Date(),
+        skills_req: "skill3",
+        edu_req: "req3",
+        expr_req: "exp3",
+        salary_given: 3000,
+        jobpost_status: "open",
+        createdAt: new Date(),
+        updatedAt: new Date()
+    },
+    {
+        id: 40,
+        job_title: "job4",
+        company: "Company4",
+        start_date: new Date(),
+        skills_req: "skill4",
+        edu_req: "req4",
+        expr_req: "exp4",
+        salary_given: 4000,
+        jobpost_status: "open",
+        createdAt: new Date(),
+        updatedAt: new Date()
+    },
+    {
+        id: 50,
+        job_title: "job5",
+        company: "Company5",
+        start_date: new Date(),
+        skills_req: "skill5",
+        edu_req: "req5",
+        expr_req: "exp5",
+        salary_given: 5000,
+        jobpost_status: "open",
+        createdAt: new Date(),
+        updatedAt: new Date()
+    },
+]
