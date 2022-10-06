@@ -71,10 +71,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      isAdmin: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-      },
       isApproved: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
