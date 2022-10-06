@@ -1,10 +1,13 @@
 const express = require('express');
-const { registerAlumni, getAllAlumni, authAlumni } = require('../controllers/alumni.controllers');
-const { checkAlumni, checkAdmin } = require('../middleware/authMiddleware')
+const { registerAlumni, authAlumni, getAllAlumni, getApplicants } = require('../controllers/alumni.controllers');
+const { checkAlumni, checkAdmin, } = require('../middleware/authMiddleware')
 const router = express.Router();
 
 router.post('/register', registerAlumni);
-router.get('/', checkAlumni, getAllAlumni);
-router.post('/login', authAlumni); 
+router.post('/login', authAlumni);
+router.get('/', checkAdmin, getAllAlumni);
+router.get('/applicants', checkAdmin, getApplicants);
+router.post('/approve-alumni/:id',checkAdmin)
+
 
 module.exports = router;

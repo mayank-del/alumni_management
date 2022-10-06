@@ -64,8 +64,7 @@ exports.authAlumni = asynHandler(async (req, res) => {
         res.status(401);
         throw new Error('Invalid email or password');
     }
-})
-
+});
 
 // @desc   GET all alumni
 // @route  GET /api/alumni/
@@ -74,4 +73,32 @@ exports.getAllAlumni = asynHandler(async (req, res) => {
     const alumni = await models.Alumni.findAll();
     res.status(200).json(alumni);
 });
+
+
+// @desc   GET all not approved alumni
+// @route  GET /api/alumni/applicants
+// @access Private
+exports.getApplicants = asynHandler(async (req, res) => {
+    const alumni = await models.Alumni.findAll({ where: { isApproved: false } });
+    res.status(200).json(alumni);
+});
+
+// @desc   GET approve alumni
+// @route  GET /api/alumni/approve-alumni/:id
+// @access Private
+exports.getApplicants = asynHandler(async (req, res) => {
+    const id = req.params.id;
+    const approvedApplicants = await models.Alumni.update({ isApproved: true }, {
+        where: {
+            id: id
+        }
+    });
+    res.status(200).json({
+        message: "Applicant is approved",
+        data: approvedApplicants
+    });
+});
+
+
+
 

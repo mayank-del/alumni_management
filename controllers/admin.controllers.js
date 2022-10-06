@@ -5,7 +5,6 @@ const { generateToken } = require('../utils/generateToken');
 // @desc   Auth admin & get token
 // @route  POST /api/admin/login
 // @access Public
-
 exports.authAdmin = asynHandler(async (req, res) => {
     const { email, password } = req.body;
     const admin = await models.Admin.findOne({ where: { email: email } });
@@ -21,3 +20,27 @@ exports.authAdmin = asynHandler(async (req, res) => {
         throw new Error('Invalid email or password');
     }
 })
+
+
+
+
+
+// @desc   POST all alumni request
+// @route  GET /api/alumni/
+// @access Private
+
+    // approve allumnus
+// delete allumnus
+// update allumnuns
+    // get allNotApprove allumnus
+
+// alumnus can update their profile
+
+// add event
+// delete event
+// read event
+// delete event
+// add jobs
+// update jobs
+// read jobs
+// delete jobs
