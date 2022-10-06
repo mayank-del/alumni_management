@@ -3,11 +3,11 @@ const { registerAlumni, loginAlumni, getAllAccounts, getApplicants, getAllAlumni
 const { checkAlumni, checkAdmin, } = require('../middleware/authMiddleware')
 const router = express.Router();
 
-router.post('/register', registerAlumni);
+router.post('/register', registerAlumni); 
 
-router.post('/login', loginAlumni);
+router.post('/login',loginAlumni);
 
-router.get('/',getAllAlumni)
+router.get('/',getAllAlumni);
 
 router.get('/accounts', checkAdmin, getAllAccounts);
 
@@ -17,15 +17,15 @@ router.post('/approve-alumni/:id',checkAdmin, approveApplicants)
 
 // TODO::
 
-router.put('/', checkAdmin,);
+router.put('/:id', checkAdmin,);
 
-router.delete('/', checkAdmin, );
+router.delete('/:id', checkAdmin, );
 
 router.get('/:id', checkAdmin);
 
 router.get('/profile/:id', checkAlumni);
 
-router.put('/profile/:id', checkAlumni)
+router.put('/profile/:id', checkAlumni);
 
 
 module.exports = router;

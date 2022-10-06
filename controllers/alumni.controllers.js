@@ -53,7 +53,7 @@ exports.registerAlumni = asynHandler(async (req, res) => {
 exports.loginAlumni = asynHandler(async (req, res) => {
     const { email, password } = req.body;
     const user = await models.Alumni.findOne({ where: { email: email } });
-    if (user && (await user.matchPassword(password))) {
+    if (user && (await user.matchPassword(password) && user.isApproved)) {
         res.json({
             id: user.id,
             name: user.username,
@@ -62,7 +62,7 @@ exports.loginAlumni = asynHandler(async (req, res) => {
         })
     } else {
         res.status(401);
-        throw new Error('Invalid email or password');
+        throw new Error('Invalid email or password or not Registered');
     }
 });
 
