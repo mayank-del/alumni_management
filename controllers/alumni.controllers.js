@@ -8,35 +8,36 @@ const { generateToken } = require('../utils/generateToken');
 // @access Public
 exports.registerAlumni = asynHandler(async (req, res) => {
     const {
-        alumni_name,
-        user_name,
-        register_number,
+        name,
+        username,
+        regno,
         password,
         dob,
         gender,
         address,
-        mobile_number,
-        email_address,
-        passout_year,
-        company_name,
+        mobile,
+        email,
+        passoutYear,
+        company,
         qualification,
-        designation
+        designation,
+
     } = req.body;
 
-    const user = await models.User.create({
-        alumni_name,
-        user_name,
-        register_number,
+    const user = await models.Alumni.create({
+        name,
+        username,
+        regno,
         password,
         dob,
         gender,
         address,
-        mobile_number,
-        email_address,
-        passout_year,
-        company_name,
+        mobile,
+        email,
+        passoutYear,
+        company,
         qualification,
-        designation
+        designation,
     })
     res.status(201).json({
         message: "Registration Successful.",
@@ -51,14 +52,14 @@ exports.registerAlumni = asynHandler(async (req, res) => {
 
 exports.authAlumni = asynHandler(async (req, res) => {
     const { email, password } = req.body;
-    const user = await models.User.findOne({ where: { email_address: email } });
+    const user = await models.Alumni.findOne({ where: { email: email } });
     if (user && (await user.matchPassword(password))) {
-            res.json({
-                id:user.id,
-                name:user.user_name,
-                email: user.email_address,
-                token: generateToken(user.id)
-            })   
+        res.json({
+            id: user.id,
+            name: user.username,
+            email: user.email,
+            token: generateToken(user.id)
+        })
     } else {
         res.status(401);
         throw new Error('Invalid email or password');
@@ -70,7 +71,7 @@ exports.authAlumni = asynHandler(async (req, res) => {
 // @route  GET /api/alumni/
 // @access Private
 exports.getAllAlumni = asynHandler(async (req, res) => {
-    const alumni = await models.User.findAll();
+    const alumni = await models.Alumni.findAll();
     res.status(200).json(alumni);
 });
 

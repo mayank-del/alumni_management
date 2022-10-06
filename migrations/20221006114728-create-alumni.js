@@ -2,23 +2,23 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Alumnis', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      alumni_name: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      user_name: {
+      username: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
       },
-      register_number: {
+      regno: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
@@ -39,19 +39,20 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      mobile_number: {
+      mobile: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      email_address: {
+      email: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique:true
       },
-      passout_year: {
+      passoutYear: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      company_name: {
+      company: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -63,6 +64,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      isApproved: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -71,13 +76,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      isApproved: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-      }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Alumnis');
   }
 };

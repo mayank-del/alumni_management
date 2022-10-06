@@ -1,41 +1,40 @@
 'use strict';
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs')
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Alumni extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-
     static associate(models) {
       // define association here
     }
   }
-  User.init({
-    alumni_name: DataTypes.STRING,
-    user_name: DataTypes.STRING,
-    register_number: DataTypes.STRING,
+  Alumni.init({
+    name: DataTypes.STRING,
+    username: DataTypes.STRING,
+    regno: DataTypes.STRING,
     password: DataTypes.STRING,
     dob: DataTypes.STRING,
     gender: DataTypes.STRING,
     address: DataTypes.STRING,
-    mobile_number: DataTypes.NUMBER,
-    email_address: DataTypes.STRING,
-    passout_year: DataTypes.NUMBER,
-    company_name: DataTypes.STRING,
+    mobile: DataTypes.NUMBER,
+    email: DataTypes.STRING,
+    passoutYear: DataTypes.NUMBER,
+    company: DataTypes.STRING,
     qualification: DataTypes.STRING,
-    designation: DataTypes.STRING
-  },
-    {
-      sequelize,
-      modelName: 'User',
-    });
+    designation: DataTypes.STRING,
+    isApproved: DataTypes.BOOLEAN
+  }, {
+    sequelize,
+    modelName: 'Alumni',
+  });
 
-  User.addHook('beforeCreate', async (user, options) => {
+  Alumni.addHook('beforeCreate', async (user, option) => {
     if (!user.changed('password')) {
       next()
     }
@@ -43,9 +42,8 @@ module.exports = (sequelize, DataTypes) => {
     user.password = await bcrypt.hash(user.password, salt);
   })
 
-  User.prototype.matchPassword = function (enteredPassword) {
+  Alumni.prototype.matchPassword = function (enteredPassword) {
     return bcrypt.compareSync(enteredPassword, this.password)
   }
-
-  return User;
+  return Alumni;
 };

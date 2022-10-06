@@ -1,5 +1,5 @@
 'use strict';
-const alumniData = require('../data/admin.data')
+const alumniData = require('../data/alumni.data')
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -13,7 +13,7 @@ module.exports = {
      * }], {});
     */
 
-    return queryInterface.bulkInsert('users',alumniData);
+    return queryInterface.bulkInsert('alumnis',alumniData);
   },
 
   async down (queryInterface, Sequelize) {

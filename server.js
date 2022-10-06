@@ -4,7 +4,7 @@ const colors = require('colors');
 const express = require('express');
 const app = express();
 const {notFound, errorHandler} = require('./middleware/errorMiddleware')
-const alumniRoutes = require('./routes/user.routes');
+const alumniRoutes = require('./routes/alumni.routes');
 const adminRoutes = require('./routes/admin.routes')
 app.use(express.json());
 
