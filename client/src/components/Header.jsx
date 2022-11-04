@@ -19,9 +19,21 @@ function Header() {
                         Login
                     </button>
                 </div>
+
                 <div >
-                    <button onClick={()=>{navigate("/login")}} className="login-nav">
+                    <button onClick={()=>{navigate("/signup")}} className="login-nav">
                         Signup
+                    </button>
+                </div>
+                <div >
+                    <button onClick={()=>{navigate("/adminlogin")}} className="login-nav">
+                        Admin
+                    </button>
+                </div>
+                <div >
+                    <button onClick={()=>{localStorage.clear()
+                                        navigate("/")}} className="login-nav">
+                        Logout
                     </button>
                 </div>
             </div>
@@ -40,9 +52,9 @@ function Header() {
                 <div onClick={()=>{navigate("/jobs")}} className="home-nav">
                     Jobs
                 </div>
-                <div onClick={()=>{navigate("/blogs")}} className="home-nav">
-                    Blogs
-                </div><div className="home-nav">
+                <div onClick={()=>{navigate("/alumni")}} className="home-nav">
+                    Alumni
+                </div><div onClick={()=>{navigate("/contact")}} className="home-nav">
                     Contact
                 </div>
             </div>

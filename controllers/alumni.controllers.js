@@ -88,6 +88,13 @@ exports.getApplicants = asynHandler(async (req, res) => {
 // @access Private
 exports.getAllAlumni = asynHandler(async (req, res) => {
     const alumni = await models.Alumni.findAll({ where: { isApproved: true } });
+    
+    res.status(200).json(alumni);
+});
+
+exports.getYrAccounts = asynHandler(async (req, res) => {
+    const year=req.params.year
+    const alumni = await models.Alumni.findAll({where:{isApproved: true , passoutYear:year}});
     res.status(200).json(alumni);
 });
 

@@ -9,8 +9,10 @@ function Contact() {
                 Contact Us
             </h1>
             <p className='Contact-p'>
-                Alumni Needs enables you to harness the power of your alumni network.
-                whatever may be the need.
+                Phone-9048XXXXXX,8934558XXX
+            </p>
+            <p className='Contact-p'>
+                Email-Heritage.University.001@gmail.com
             </p>
         </div>
         

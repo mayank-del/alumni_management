@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerAlumni, loginAlumni, getAllAccounts, getApplicants, getAllAlumni, approveApplicants } = require('../controllers/alumni.controllers');
+const { registerAlumni, loginAlumni, getAllAccounts, getApplicants, getAllAlumni, approveApplicants,getYrAccounts } = require('../controllers/alumni.controllers');
 const { checkAlumni, checkAdmin, } = require('../middleware/authMiddleware')
 const router = express.Router();
 
@@ -9,7 +9,9 @@ router.post('/login',loginAlumni);
 
 router.get('/',getAllAlumni);
 
-router.get('/accounts', checkAdmin, getAllAccounts);
+router.get('/:year',getYrAccounts);
+
+router.get('/accounts', checkAlumni, getAllAccounts);
 
 router.get('/applicants', checkAdmin, getApplicants);
 

@@ -1,64 +1,83 @@
+import axios from 'axios';
 import React from 'react';
-import "./Login.css"
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
+import "./Login.css";
 
 function Login() {
+
+    const navigate=useNavigate();
+    const [data,setData]=useState({
+        email:"",
+        password:""
+    })
+
+    function handleChange(e){
+        const val=e.target.value
+        setData({...data,[e.target.name]:val})
+
+    }
+    async function handleSubmit(){
+        await axios.post("http://localhost:5000/api/alumni/login",data).then(res=>{
+            localStorage.setItem("alumniToken",res.data.token)
+            localStorage.setItem("id",res.data.id)
+            localStorage.setItem("name",res.data.name)
+
+        }).then(()=>{
+            swal("Hello", "Login Successful", "success");
+        }).then(()=>{
+             navigate("/alumni")
+
+        })
+        
+    }
+
   return (
     <div className='login-main-container'>
+        <div >
+            <div className='manager-div-2'>
 
-<div className="login-wrap">
-	<div className="login-html">
-		<input id="tab-1" type="radio" name="tab" className="sign-in" checked/><label for="tab-1" className="tab">Sign In</label>
-		<input id="tab-2" type="radio" name="tab" className="sign-up"/><label for="tab-2" className="tab">Sign Up</label>
-		<div className="login-form">
-			<div className="sign-in-htm">
-				<div className="group">
-					<label for="user" className="label">Username</label>
-					<input id="user" type="text" className="input"/>
-				</div>
-				<div className="group">
-					<label for="pass" className="label">Password</label>
-					<input id="pass" type="password" className="input" data-type="password"/>
-				</div>
-				<div className="group">
-					<input id="check" type="checkbox" className="check" checked/>
-					<label for="check"><span className="icon"></span> Keep me Signed in</label>
-				</div>
-				<div className="group">
-					<input type="submit" className="button" value="Sign In"/>
-				</div>
-				<div className="hr"></div>
-				<div className="foot-lnk">
-					<a href="#forgot">Forgot Password?</a>
-				</div>
-			</div>
-			<div className="sign-up-htm">
-				<div className="group">
-					<label for="user" className="label">Username</label>
-					<input id="user" type="text" className="input"/>
-				</div>
-				<div className="group">
-					<label for="pass" className="label">Password</label>
-					<input id="pass" type="password" className="input" data-type="password"/>
-				</div>
-				<div className="group">
-					<label for="pass" className="label">Repeat Password</label>
-					<input id="pass" type="password" className="input" data-type="password"/>
-				</div>
-				<div className="group">
-					<label for="pass" className="label">Email Address</label>
-					<input id="pass" type="text" className="input"/>
-				</div>
-				<div className="group">
-					<input type="submit" className="button" value="Sign Up"/>
-				</div>
-				<div className="hr"></div>
-				<div className="foot-lnk">
-					<label for="tab-1">Already Member?</label>
-				</div>
-			</div>
+                <div className="signup-header">
+                    <h2>
+                        Login
+                    </h2>
+                </div>	
+                <div className='names'>
+
+
+                    <input
+                        style={{"width":"240px"}}
+                        type = "text"
+                        placeholder = "Enter Your Email"
+                        name = "email"
+                        onChange={handleChange}
+                        value={data.email}
+                        className = ""
+                    />
+        </div>
+        <div className='names'>
+        <input
+            style={{"width":"240px"}}
+			type = "text"
+			placeholder = "Enter Your Password"
+			name = "password"
+			onChange={handleChange}
+			value={data.password}
+			className = ""
+		/>
+
+        </div>
+        <div className='button-container-div'>
+		<button 
+        style={{"marginTop":"60px"}}
+        onClick={handleSubmit} className="signup-button">
+			Login
+		</button>
 		</div>
-	</div>
-</div>
+
+            </div>
+        </div>
     </div>
   )
 }

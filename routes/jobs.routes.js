@@ -3,14 +3,14 @@ const { createJob, deleteJob , getJob, getJobs, updateJob} = require('../control
 const { checkAlumni, checkAdmin, } = require('../middleware/authMiddleware')
 const router = express.Router();
 
-router.post('/', checkAdmin, createJob);
+router.post('/', checkAlumni, createJob);
 
 router.get('/', getJobs);
 
 router.get('/:id', getJob);
 
-router.put('/:id',checkAdmin, updateJob);
+router.put('/:id',checkAlumni, updateJob);
 
-router.delete('/:id',checkAdmin, deleteJob);
+router.delete('/:id',checkAlumni, deleteJob);
 
 module.exports = router;
