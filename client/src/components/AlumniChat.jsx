@@ -31,17 +31,17 @@ export default function AlumniChat({socket,username,room}) {
         await socket.emit("send_message", messageData);
         setMessageList((list) => [...list, messageData]);
         setCurrentMessage("");
-        setIsPlaying(true)
+        setIsPlaying(false)
 
-        //console.log(messageList)
-        //setStop(!stop)
+        
       }
     };
   
     useEffect(() => {
       const eventListener = (data) => {
           setMessageList((list) => [...list, data]);
-          setIsPlaying(true);
+          //data?setIsPlaying(true):setIsPlaying(false)
+
 
           //audio.play();
       };
@@ -54,14 +54,14 @@ export default function AlumniChat({socket,username,room}) {
       <div className="chat-window">
         <div className="chat-header">
           <p>Live Chat</p>
-          <Sound
+          {/* <Sound
       url={soundurl}
       playStatus={
         isPlaying ? Sound.status.PLAYING : Sound.status.STOPPED
       }
       volume={25}
       // playFromPosition={000}
-    />   
+    />  */}  
         </div>
         <div className="chat-body">
           <ScrollToBottom className="message-container">
