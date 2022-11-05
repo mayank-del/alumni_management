@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "S##48k@qirt",
-    "database": "alumni-management",
+    "password": "root",
+    "database": "alumni",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

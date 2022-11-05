@@ -1,0 +1,106 @@
+.adminpage{
+    background: black;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.approval-header h1{
+    color: whitesmoke;
+}
+
+.approve-card{
+    width: 300px;
+    height: 180px;
+    background: rgb(222, 225, 15);
+    border-radius: 20px;
+    box-shadow:  10px 10px 20px #656511,
+             -10px -10px 20px #39392f;
+
+}
+.approve-card h4{
+    color: black;
+}
+.approve-button{
+    color: yellow;
+    background: black;
+    width: 90px;
+    height: 40px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.event-modify{
+    color: black;
+    background: yellow;
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+    cursor: pointer; 
+    font-weight: bolder;
+}
+.admin-event-header{
+    color: whitesmoke;
+}
+.addInps{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 50vh;
+    width: 100%;
+}
+.addInps input{
+    margin-top: 10px;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 5px;
+    width: 70%;
+    height: 35px;
+    color: yellow;
+    padding-left: 12px;
+   
+}
+.addInps button{
+    width: 60%;
+	height: 40px;
+	cursor: pointer;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	
+	background: yellow;
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 20px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+}
+.chats-popups{
+	position: relative;
+	z-index: 2;
+	width: 400px;
+	height: 400px;
+    margin-top: 30px;
+	background: #18180c;
+	border-radius: 10px;
+}
+.x-button{
+	position: relative;
+    left: 180px;
+	font-weight: bolder;
+	background: rgb(246, 248, 133);
+	height: 22px;
+	width: 20px;
+	text-align: center;
+	border-radius: 50%;
+	top: 1%;
+	cursor: pointer;
+}
+.adminpage{
+
+}

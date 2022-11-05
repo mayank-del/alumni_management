@@ -1,0 +1,64 @@
+.Alumni{
+    width: 100vw;
+    min-height: 100vh;
+
+}
+.Alumni-container{
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: url("../images/alumni.jpg");
+    background-size:cover;
+    
+}
+.Alumni-container::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-size:100% ;
+    background-color: rgba(0,0,0,0.75);
+
+}
+.Alumni-p{
+    color: whitesmoke;
+    position: relative;
+    top: 30%;
+    font-weight: bolder;
+    padding: 2% 23% 5% 23%;
+}
+.alumni-list{
+    margin-top: 3%;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+    
+}
+.alumni-list-container{
+    margin-top: 5%;
+}
+.alumnicard{
+    
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    background: yellow;
+    color: black;
+    padding: 40px 5px 5px 5px;
+}
+.alumni-footer{
+    width: 100%;
+    height: 40px;
+    background: yellow;
+}
+.yearselecter{
+    cursor: pointer;   
+}
+.yearselecter:hover{
+    opacity: 0.6;
+}
