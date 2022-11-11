@@ -2,9 +2,15 @@ import React from 'react';
 import "./Home.css";
 import logo from "../images/Heritage-University.png";
 import { useNavigate } from 'react-router-dom';
+import {NotificationState} from "../Context/UserContext"
+import { BsBellFill } from 'react-icons/bs';
+
 
 function Header() {
     const navigate=useNavigate();
+    const {notification,setNotification}=NotificationState()
+    const alumniToken=localStorage.getItem("alumniToken")
+
   return (
     <div className='header-main'>
         <div className="login-signup">
@@ -13,6 +19,9 @@ function Header() {
                     Please login here
                 </h3>
             </div>
+            {alumniToken && <div className='notification'>
+                <span><BsBellFill/>{notification}</span>
+            </div>}
             <div className="login-right">
                 <div >
                     <button onClick={()=>{navigate("/login")}} className="login-nav">
@@ -42,6 +51,7 @@ function Header() {
             <div className="head-left">
                <img src={logo} alt="" /> 
             </div>
+            
             <div className="head-right">
                 <div onClick={()=>{navigate("/")}} className="home-nav">
                     Home

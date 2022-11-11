@@ -77,6 +77,12 @@
     border: 1px solid yellow;
     position: relative;
     cursor: pointer;
+    /*display: grid ;
+    gap: 1rem;
+    grid-template-columns: 70% 30%;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
   .chat-window .chat-header p {
     display: block;
@@ -148,7 +154,9 @@
   
   #other .message-content {
     justify-content: flex-end;
-    background-color: cornflowerblue;
+    background-color: yellow;
+    color:black;
+    font-weight: 600;
   }
   
   #other .message-meta {
@@ -213,5 +221,9 @@
   }
 
   ::placeholder{
+    color: yellow;
+  }
+
+  .notification-bell{
     color: yellow;
   }

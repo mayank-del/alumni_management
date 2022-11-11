@@ -57,7 +57,7 @@ export default function AlumniAndStudentCommunication() {
          onChange={(e)=>{setRoom(e.target.value)}}
         />}
         <button onClick={joinRoom}>
-            {alumniToken?"Join":"Join A Room"}
+            {alumniToken?"See Queries":"Join A Room"}
         </button>
     </div>):
 

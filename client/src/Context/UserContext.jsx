@@ -1,17 +1,20 @@
-import React from 'react'
-import { useState , createContext} from "react"
+
+import { useState , createContext,useContext} from "react"
 export const contextData=createContext()
 
 function UserContext({children}) {
-    const [contextToken,setContextToken]=useState("");
-    const [userContextToken,setUserContextToken]=useState("");
+    const[notification,setNotification]=useState(0)
 
   return (
-    <contextData.Provider value={{contextToken,setContextToken,userContextToken,setUserContextToken}}>
+    <contextData.Provider value={{ notification,setNotification }}>
         {children}
     </contextData.Provider>
     
   );
 }
 
-export default UserContext
+export default UserContext;
+
+export const NotificationState=()=>{
+  return useContext(contextData);
+}

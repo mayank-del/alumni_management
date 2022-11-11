@@ -10,6 +10,9 @@ const alumniRoutes = require('./routes/alumni.routes');
 const adminRoutes = require('./routes/admin.routes');
 const eventRoutes = require('./routes/events.routes');
 const jobRoutes = require('./routes/jobs.routes');
+//const chatModel = require('./models/chat')
+//const router=require("express").Router();
+const chats=require('./routes/chat.routes')
 
 
 app.use(express.json());
@@ -19,6 +22,7 @@ app.use('/api/alumni', alumniRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/jobs', jobRoutes);
+app.use('/api/chats',chats)
 
 app.use(notFound);
 app.use(errorHandler);
@@ -47,6 +51,8 @@ io.on("connection", (socket) => {
     });
   
     socket.on("send_message", (data) => {
+      console.log(data);
+      //router.post()
       socket.to(data.room).emit("receive_message", data)
       
     });
