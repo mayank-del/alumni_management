@@ -3,10 +3,11 @@ import { useEffect } from 'react';
 import axios from "axios";
 import "./Alumni.css";
 import { useState } from 'react';
-import swal from "sweetalert"
-
+import swal from "sweetalert";
+import {useNavigate} from "react-router-dom";
 function Alumni() {
 
+  const navigate=useNavigate();
   
   const alumniToken=localStorage.getItem("alumniToken")
   const [alumniData,setAlumniData]=useState([])
@@ -228,10 +229,16 @@ function handleID(e){
                 <h3>
                   Company:{alumni.company}
                 </h3>
+                <h3>
+                  Chat-Room:{`Room${alumni.id}`}
+                </h3>
               </div>
             ))}
         </div>
         </div>
+        <button style={{"width":"300px"}} className="signup-button" onClick={()=>{navigate("/alumni/discussion")}}>
+          {alumniToken?"See Chats":"Chat With Alumni"}
+        </button>
         <footer className='alumni-footer'>
               <h4 className='yearselecter'>
                 <span onClick={yrDecrease}> &lt;&lt; </span>

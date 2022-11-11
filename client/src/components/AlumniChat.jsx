@@ -1,15 +1,27 @@
 import React,{useState} from 'react'
 import { useEffect } from 'react';
 import ScrollToBottom from "react-scroll-to-bottom";
+import { BsBellFill } from 'react-icons/bs';
 import soundurl from "../images/Notification.mp3";
 import Sound from "react-sound";
+import axios from 'axios';
+import {NotificationState} from "../Context/UserContext"
+
 
 export default function AlumniChat({socket,username,room}) {
+  const [messageList, setMessageList] = useState([]);
+  const {notification,setNotification}=NotificationState()
 
+    useEffect(()=>{
+        const data=axios.get(`http://localhost:5000/api/chats/${room}`).then((res)=>{
+          setMessageList(res.data)
+          console.log(res.data)
+        })
+    },[socket])
     const [currentMessage, setCurrentMessage] = useState("");
-    const [messageList, setMessageList] = useState([]);
     const [isPlaying,setIsPlaying]=useState(false)
     const alumniToken=localStorage.getItem("alumniToken")
+    const [count,setCount]=useState(0)
 
     const id=alumniToken? localStorage.getItem("id"):username;
    // var audio=new Audio('../images/Notification.mp3')
@@ -27,8 +39,9 @@ export default function AlumniChat({socket,username,room}) {
             ":" +
             new Date(Date.now()).getMinutes(),
         };
-  
+        
         await socket.emit("send_message", messageData);
+        axios.post(`http://localhost:5000/api/chats/chat/`,messageData);
         setMessageList((list) => [...list, messageData]);
         setCurrentMessage("");
         setIsPlaying(false)
@@ -38,30 +51,31 @@ export default function AlumniChat({socket,username,room}) {
     };
   
     useEffect(() => {
-      const eventListener = (data) => {
-          setMessageList((list) => [...list, data]);
-          //data?setIsPlaying(true):setIsPlaying(false)
+      const eventListener = async(data) => {
+          await setIsPlaying(true)
+          await setNotification(notification + 1)
+          await setMessageList((list) => [...list, data]);
 
-
-          //audio.play();
       };
 
       socket.on("receive_message", eventListener)
       return () => socket.off("receive_message", eventListener);
-    }, [socket]);
+    }, [socket,count,isPlaying]);
   
     return (
       <div className="chat-window">
         <div className="chat-header">
-          <p>Live Chat</p>
-          {/* <Sound
-      url={soundurl}
-      playStatus={
-        isPlaying ? Sound.status.PLAYING : Sound.status.STOPPED
-      }
-      volume={25}
+          <p>{alumniToken?"Live Chat":"Live chat with Alumni"}</p>
+        
+          <span className='notification-bell'><BsBellFill/>{notification}</span>
+          <Sound
+              url={soundurl}
+              playStatus={
+                isPlaying ? Sound.status.PLAYING : Sound.status.STOPPED
+              }
+              volume={25}
       // playFromPosition={000}
-    />  */}  
+    />   
         </div>
         <div className="chat-body">
           <ScrollToBottom className="message-container">
@@ -104,3 +118,45 @@ export default function AlumniChat({socket,username,room}) {
       </div>
     );
   }
+
+
+  /* 
+  
+  const prom1=new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+              const eventListener = (data) => {
+                setMessageList((list) => [...list, data]);
+                resolve(socket.on("receive_message", eventListener))
+
+              }
+              return () => socket.off("receive_message", eventListener);
+
+            },4000)
+            
+          });
+
+          const messageDrop = (indexdata) => {
+            return new Promise((resolve,reject)=>{
+                setTimeout((indexdata)=>{
+                resolve(setIsPlaying(true))
+                
+                  
+                  },2000,indexdata,);
+
+                })
+              }
+
+          prom1.then((res)=>{
+            console.log(res);
+            setCount(count+1)
+
+
+            return messageDrop(res);
+          }).then((kuchbhi)=>{
+            console.log(kuchbhi)
+
+        }).catch((err)=>{
+            console.log(err)
+          })
+  
+  */
