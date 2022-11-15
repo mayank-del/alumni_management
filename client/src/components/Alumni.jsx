@@ -5,11 +5,16 @@ import "./Alumni.css";
 import { useState } from 'react';
 import swal from "sweetalert";
 import {useNavigate} from "react-router-dom";
+import { NotificationState } from '../Context/UserContext';
+
+
 function Alumni() {
 
   const navigate=useNavigate();
   
-  const alumniToken=localStorage.getItem("alumniToken")
+  const alumniToken = localStorage.getItem("alumniToken")
+  const adminToken = localStorage.getItem("token")
+  const {setVideoOn}=NotificationState()
   const [alumniData,setAlumniData]=useState([])
   const [selectYear,setSelectedYear]= useState(2012)
 
@@ -236,9 +241,20 @@ function handleID(e){
             ))}
         </div>
         </div>
+        <div style={{"display":"flex"}}>
         <button style={{"width":"300px"}} className="signup-button" onClick={()=>{navigate("/alumni/discussion")}}>
           {alumniToken?"See Chats":"Chat With Alumni"}
         </button>
+        {(adminToken || alumniToken) && <button style={{"width":"300px"}} className="signup-button" onClick={()=>{navigate("/alumni/conference");
+            setVideoOn(
+              {audio:true,video:true}
+            )
+      }}>
+          Video Conference
+        </button>}
+        </div>
+
+        
         <footer className='alumni-footer'>
               <h4 className='yearselecter'>
                 <span onClick={yrDecrease}> &lt;&lt; </span>

@@ -4,8 +4,10 @@ import axios from "axios";
 import {contextData} from "../Context/UserContext"
 import { useNavigate } from 'react-router-dom';
 import swal from "sweetalert";
+import { NotificationState } from '../Context/UserContext';
 
 function AdminLogin() {
+    const {setVideoOn}=NotificationState()
     const [adminData,setAdminData]=useState({
         email:"",
         password:""
@@ -27,13 +29,16 @@ function AdminLogin() {
         
         try{
            await axios.post("http://localhost:5000/api/admin/login",adminData).then(res=>{
-                setContextToken(res.data.token)
+                //setContextToken(res.data.token)
                 localStorage.setItem("token",res.data.token);
            }).then(res=>{
             swal("Welcome Admin...", "Login Successful", "success");
                 
            }).then(res=>{
                 navigate('/adminpage')
+                setVideoOn(
+                    {audio:true,video:true}
+                  )
 
            })
            
