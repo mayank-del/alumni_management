@@ -12,6 +12,8 @@ import Header from './components/Header';
 import AdminLogin from './components/AdminLogin';
 import AdminPage from './components/AdminPage';
 import AlumniAndStudentCommunication from './components/AlumniAndStudentCommunication';
+import VideoConference from './components/VideoConference';
+import AdminConference from './components/AdminConference';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route exact path="/adminlogin" element={<AdminLogin/>}/>
           <Route exact path="/adminpage" element={<AdminPage/>}/>
           <Route exact path="/alumni/discussion" element={<AlumniAndStudentCommunication/>}/>
+          <Route exact path="/alumni/conference" element={<VideoConference/>}/>
+          <Route exact path="/admin/conference" element={<AdminConference/>}/>
         </Routes>
       </Router>
       {/* <Login/> */}

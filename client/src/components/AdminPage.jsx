@@ -5,12 +5,56 @@ import "./AdminPage.css"
 import axios from "axios"
 import swal from "sweetalert";
 
+import { Typography, AppBar } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+import VideoPlayer from './VideoCallComponents/VideoPlayer';
+import Sidebar from './VideoCallComponents/Sidebar';
+import Notifications from './VideoCallComponents/Notifications';
+
+import { NotificationState } from '../Context/UserContext';
+
+
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    borderRadius: 15,
+    margin: '30px 100px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '800px',
+    background:'#28281a',
+    color:"yellow",
+    border: '2px solid black',
+
+    [theme.breakpoints.down('xs')]: {
+      width: '90%',
+    },
+  },
+  image: {
+    marginLeft: '15px',
+  },
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+  },
+}));
+
+
 function AdminPage() {
+
+    const classes =useStyles();
     
+    const {activeAdminCall,setActiveAdminCall} = NotificationState();
     const {contextToken}=useContext(contextData)
     const [token,setToken]=useState("")
     const [requests,setRequests]=useState([])
     const [ID,setParamID]=useState(0)
+    const adminToken=localStorage.getItem("token")
+
 
     useEffect(()=>{
         
@@ -117,6 +161,9 @@ function AdminPage() {
 
   return (
     <div className='adminpage'>
+       {adminToken?<div>
+
+       
         {isAddPressed?
         <div className='chats-popups'>
         <button onClick={handleCloses} className='x-button'>
@@ -227,7 +274,21 @@ function AdminPage() {
                 
             </div>
         </div>
-        
+         <div className={classes.wrapper}>
+      <AppBar className={classes.appBar} position="static" color="inherit">
+        <Typography className='typo' variant="h2" align="center">Conference</Typography>
+      </AppBar>
+      <VideoPlayer />
+      <Sidebar>
+        <Notifications />
+      </Sidebar>
+    </div> 
+        </div>:
+        <div style={{"color":"whitesmoke"}}>
+                <h1 >
+                    Sorry,only admin can Access this page
+                </h1>
+            </div>}
     </div>
   )
 }
