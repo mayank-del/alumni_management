@@ -4,13 +4,26 @@ import logo from "../images/Heritage-University.png";
 import { useNavigate } from 'react-router-dom';
 import {NotificationState} from "../Context/UserContext"
 import { BsBellFill } from 'react-icons/bs';
+import { useEffect } from 'react';
 
 
 function Header() {
     const navigate=useNavigate();
-    const {notification,setNotification}=NotificationState()
+    const {notification,setNotification,socket}=NotificationState()
     const alumniToken=localStorage.getItem("alumniToken")
-
+    useEffect(() => {
+        socket.emit("join_room", "Room4");
+        const eventListener = (data) => {
+            
+            setNotification(notification + 1)
+            
+  
+        };
+  
+        socket.on("receive_message", eventListener)
+        return () => socket.off("receive_message", eventListener);
+      }, [alumniToken,socket,notification]);
+    
   return (
     <div className='header-main'>
         <div className="login-signup">

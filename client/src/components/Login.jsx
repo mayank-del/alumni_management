@@ -29,6 +29,9 @@ function Login() {
         }).then(()=>{
              navigate("/alumni")
 
+        }).catch(()=>{
+            swal("Sorry", "Invalid User", "error");
+
         })
         
     }

@@ -19,7 +19,9 @@ function Alumni() {
   const [selectYear,setSelectedYear]= useState(2012)
 
   useEffect(()=>{
-    
+    setVideoOn(
+      {audio:false,video:false}
+    )
     axios.get(`http://localhost:5000/api/alumni/${selectYear}`).then(res=>{
       setAlumniData(res.data);
     });
@@ -249,6 +251,7 @@ function handleID(e){
             setVideoOn(
               {audio:true,video:true}
             )
+            console.log()
       }}>
           Video Conference
         </button>}

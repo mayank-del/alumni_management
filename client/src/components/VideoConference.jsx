@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import VideoPlayer from './VideoCallComponents/VideoPlayer';
 import Sidebar from './VideoCallComponents/Sidebar';
 import Notifications from './VideoCallComponents/Notifications';
+import { NotificationState} from '../Context/UserContext';
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -35,12 +37,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+
+
 function VideoConference() {
+
+  const {setVideoOn}=NotificationState();
 
 const classes =useStyles();
 
   return (
     <div className={classes.wrapper}>
+      <button onClick={()=>{setVideoOn({video:true,audio:true})}}>
+        Camera
+      </button>
       <AppBar className={classes.appBar} position="static" color="inherit">
         <Typography className='typo' variant="h2" align="center">Conference</Typography>
       </AppBar>

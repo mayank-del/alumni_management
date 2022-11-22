@@ -239,7 +239,8 @@ const UserContext = ({ children }) => {
       VideoOn,
       setVideoOn,
       activeAdminCall,
-      setActiveAdminCall
+      setActiveAdminCall,
+      socket
       
     }}
     >

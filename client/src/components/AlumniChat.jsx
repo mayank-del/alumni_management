@@ -51,16 +51,16 @@ export default function AlumniChat({socket,username,room}) {
     };
   
     useEffect(() => {
-      const eventListener = async(data) => {
-          await setIsPlaying(true)
-          await setNotification(notification + 1)
-          await setMessageList((list) => [...list, data]);
+      const eventListener = (data) => {
+          setIsPlaying(true)
+          setNotification(notification + 1)
+          setMessageList((list) => [...list, data]);
 
       };
 
       socket.on("receive_message", eventListener)
       return () => socket.off("receive_message", eventListener);
-    }, [socket,count,isPlaying]);
+    }, [socket,isPlaying,notification]);
   
     return (
       <div className="chat-window">
